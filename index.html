@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Query Generator</h1>
+        
+        <div class="tabs">
+            <button onclick="showTab('splunk')">Splunk</button>
+            <button onclick="showTab('microsoft')">Microsoft Advanced Hunting</button>
+        </div>
+
+        <div id="splunk" class="tab-content">
+            <select id="queryType">
+                <option value="domainTraffic">Domain Traffic</option>
+                <option value="domainTrafficTable">Domain Traffic (Table Format)</option>
+                <option value="emailRecipients">Email Recipients</option>
+                <option value="availableLogs">Available Logs</option>
+                <option value="mdmDeviceLookup">MDM Device Lookup</option>
+            </select>
+        </div>
+
+        <div id="microsoft" class="tab-content" style="display:none;">
+            <select id="msQueryType">
+                <option value="urlClickEvents">URL Click Events</option>
+                <option value="deviceNetworkEvents">Device Network Events</option>
+                <option value="fileHashSearch">File Hash Search</option>
+                <option value="specificFileSearch">Specific File Search</option>
+            </select>
+        </div>
+
+        <textarea id="inputField" rows="5" placeholder="Enter input here..."></textarea>
+        <div class="button-group">
+            <button onclick="generateQuery()">Generate Query</button>
+            <button onclick="defangUrls()">Defang URLs</button>
+        </div>
+        <div class="output-container">
+            <pre id="outputQuery" class="output"><code></code></pre>
+            <button class="copy-btn" onclick="copyToClipboard()">Copy</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

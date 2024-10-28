@@ -1,3 +1,4 @@
+// Updated script.js
 function showTab(tabName) {
     const splunkTab = document.getElementById('splunk');
     const microsoftTab = document.getElementById('microsoft');
@@ -153,10 +154,10 @@ function generateQuery() {
 }
 
 function copyToClipboard() {
-    const outputQuery = document.getElementById('outputQuery').querySelector('code');
-    navigator.clipboard.writeText(outputQuery.textContent)
+    const outputQuery = document.getElementById('outputQuery').querySelector('code').textContent;
+    navigator.clipboard.writeText(outputQuery)
         .then(() => alert('Query copied to clipboard'))
-        .catch(err => alert('Failed to copy text: ', err));
+        .catch(err => alert('Failed to copy text: ' + err));
 }
 
 function defangUrls() {
@@ -168,6 +169,17 @@ function defangUrls() {
                   .replace(/https:/g, 'hxxps:');
     });
     inputField.value = defangedUrls.join('\n');
+}
+
+function refangUrls() {
+    const inputField = document.getElementById('inputField');
+    const urls = inputField.value.split('\n');
+    const refangedUrls = urls.map(url => {
+        return url.replace(/\[\.\]/g, '.')
+                  .replace(/hxxp:/g, 'http:')
+                  .replace(/hxxps:/g, 'https:');
+    });
+    inputField.value = refangedUrls.join('\n');
 }
 
 // Initial setup

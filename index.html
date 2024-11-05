@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Query Generator</h1>
+        <h1>Bulk Query Generator</h1>
         
         <div class="tabs">
             <button onclick="showTab('splunk')">Splunk</button>
@@ -38,6 +38,7 @@
         <div class="button-group">
             <button onclick="generateQuery()">Generate Query</button>
             <button onclick="defangUrls()">Defang URLs</button>
+            <button onclick="refangUrls()">ang URLs</button>
         </div>
         <div class="output-container">
             <pre id="outputQuery" class="output"><code></code></pre>
